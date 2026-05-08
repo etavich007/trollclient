@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Troll Client | Лучший чит для Minecraft</title>
+    <meta name="theme-color" content="#ff4444">
     <style>
         * {
             margin: 0;
@@ -18,172 +18,115 @@
             color: #fff;
             line-height: 1.6;
             transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
         }
 
-        /* Светлая тема */
-        body.light-theme {
-            background: #f5f5f5;
-            color: #333;
-        }
-
-        body.light-theme .bg-animation {
-            background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 50%, #a0a0a0 100%);
-        }
-
-        body.light-theme .feature-card {
-            background: rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.1);
-        }
-
-        body.light-theme .feature-card h3 {
-            color: #cc0000;
-        }
-
-        body.light-theme .hero p {
-            color: #555;
-        }
-
-        body.light-theme footer {
-            background: rgba(0,0,0,0.8);
-        }
-
-        body.light-theme .download-section {
-            background: rgba(0,0,0,0.1);
-        }
-
-        body.light-theme .video-section {
-            background: rgba(0,0,0,0.1);
-        }
-
-        body.light-theme .theme-toggle {
-            background: rgba(0,0,0,0.1);
-            color: #333;
-        }
-
-        body.light-theme .theme-toggle:hover {
-            background: #cc0000;
-            color: white;
-        }
-
-        body.light-theme .logo span {
-            color: #cc0000;
-        }
-
-        body.light-theme .btn-primary {
-            background: linear-gradient(45deg, #cc0000, #990000);
-        }
-
-        body.light-theme .btn-secondary {
-            border: 2px solid #cc0000;
-            color: #333;
-        }
-
-        body.light-theme .btn-secondary:hover {
-            background: #cc0000;
-            color: white;
-        }
-
-        body.light-theme .nav-links a {
-            color: #333;
-        }
-
-        body.light-theme header {
-            background: rgba(255,255,255,0.9);
-            border-bottom: 2px solid #cc0000;
-        }
-
-        /* Кнопка Telegram */
-        .telegram-btn {
-            background: #0088cc;
-            border: none;
-            border-radius: 30px;
-            padding: 8px 16px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: 0.3s;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .telegram-btn:hover {
-            background: #006699;
-            transform: scale(1.05);
-        }
-
-        /* Кнопка YouTube */
-        .youtube-btn {
-            background: #ff0000;
-            border: none;
-            border-radius: 30px;
-            padding: 8px 16px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: 0.3s;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .youtube-btn:hover {
-            background: #cc0000;
-            transform: scale(1.05);
-        }
-
-        .theme-toggle {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid #ff4444;
-            border-radius: 30px;
-            padding: 8px 16px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: 0.3s;
-            color: white;
-        }
-
-        .theme-toggle:hover {
-            background: #ff4444;
-            transform: scale(1.05);
-        }
-
-        /* Анимированный фон */
-        .bg-animation {
+        /* Анимированный фон - ПОСТОЯННО ДВИГАЕТСЯ */
+        .animated-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: -2;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #16213e 75%, #1a1a2e 100%);
+            background-size: 400% 400%;
+            animation: bgMove 12s ease infinite;
+        }
+
+        @keyframes bgMove {
+            0% { background-position: 0% 0%; }
+            25% { background-position: 50% 25%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 75%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        /* Волны - ПОСТОЯННО ДВИГАЮТСЯ */
+        .waves-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
             z-index: -1;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            transition: background 0.3s ease;
+            overflow: hidden;
+            pointer-events: none;
         }
-
-        .bg-animation::before {
-            content: '';
+        .wave {
             position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,0,0,0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,80C1120,85,1280,75,1360,69.3L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="rgba(255,68,68,0.3)"/></svg>') repeat-x;
+            background-size: 1200px 100px;
+            animation: waveMove 8s linear infinite;
+        }
+        .wave:nth-child(2) {
+            bottom: 15px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,80C1120,85,1280,75,1360,69.3L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="rgba(255,68,68,0.2)"/></svg>') repeat-x;
+            animation: waveMove 12s linear infinite reverse;
+        }
+        .wave:nth-child(3) {
+            bottom: 30px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,80C1120,85,1280,75,1360,69.3L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="rgba(255,68,68,0.15)"/></svg>') repeat-x;
+            animation: waveMove 6s linear infinite;
         }
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        @keyframes waveMove {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 1200px; }
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* ========== ТЕМЫ ========== */
+        body.light-theme .animated-bg {
+            background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 50%, #a0a0a0 100%) !important;
         }
+        body.light-theme { background: #f5f5f5; color: #333; }
+        body.light-theme header { background: rgba(255,255,255,0.9); }
+        body.light-theme .nav-links a { color: #333; }
+        body.light-theme .theme-select { background: rgba(0,0,0,0.1); color: #333; border-color: #cc0000; }
+        
+        body.red-theme .animated-bg {
+            background: linear-gradient(135deg, #330000 0%, #660000 50%, #990000 100%) !important;
+        }
+        body.red-theme header { border-bottom-color: #ff3333; }
+        body.red-theme .btn-primary { background: linear-gradient(45deg, #ff0000, #8b0000); }
+        body.red-theme .logo span, body.red-theme .highlight, 
+        body.red-theme .feature-card h3, body.red-theme .version { color: #ff3333; }
+        
+        body.blue-theme .animated-bg {
+            background: linear-gradient(135deg, #000033 0%, #000066 50%, #000099 100%) !important;
+        }
+        body.blue-theme header { border-bottom-color: #4488ff; }
+        body.blue-theme .btn-primary { background: linear-gradient(45deg, #0066ff, #0000cc); }
+        body.blue-theme .logo span, body.blue-theme .highlight, 
+        body.blue-theme .feature-card h3, body.blue-theme .version { color: #4488ff; }
+        
+        body.green-theme .animated-bg {
+            background: linear-gradient(135deg, #003300 0%, #006600 50%, #009900 100%) !important;
+        }
+        body.green-theme header { border-bottom-color: #33ff33; }
+        body.green-theme .btn-primary { background: linear-gradient(45deg, #00cc00, #008800); }
+        body.green-theme .logo span, body.green-theme .highlight, 
+        body.green-theme .feature-card h3, body.green-theme .version { color: #33ff33; }
+        
+        body.neon-theme .animated-bg {
+            background: linear-gradient(135deg, #000000 0%, #0a0033 50%, #001a33 100%) !important;
+        }
+        body.neon-theme header { border-bottom-color: #00ffcc; }
+        body.neon-theme .btn-primary { background: linear-gradient(45deg, #00ffcc, #0099ff); box-shadow: 0 0 20px #00ffcc; }
+        body.neon-theme .logo span, body.neon-theme .highlight, 
+        body.neon-theme .feature-card h3, body.neon-theme .version { color: #00ffcc; text-shadow: 0 0 10px #00ffcc; }
+        body.neon-theme .feature-card { border-color: #00ffcc; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
         header {
             background: rgba(0,0,0,0.8);
             backdrop-filter: blur(10px);
-            padding: 20px 0;
+            padding: 15px 0;
             position: fixed;
             width: 100%;
             top: 0;
@@ -191,317 +134,106 @@
             border-bottom: 2px solid #ff4444;
             transition: background 0.3s ease;
         }
+        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .logo { font-size: 24px; font-weight: bold; }
+        .logo span { color: #ff4444; text-shadow: 0 0 10px rgba(255,68,68,0.5); transition: color 0.3s ease; }
+        .nav-links { display: flex; gap: 20px; list-style: none; flex-wrap: wrap; }
+        .nav-links a { color: #fff; text-decoration: none; transition: 0.3s; font-size: 14px; }
+        .nav-links a:hover { color: #ff4444; }
+        .right-buttons { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .logo {
-            font-size: 28px;
+        .telegram-btn, .youtube-btn, .music-btn, .theme-select {
+            padding: 6px 12px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: 0.3s;
             font-weight: bold;
         }
+        .telegram-btn { background: #0088cc; border: none; color: white; }
+        .telegram-btn:hover { background: #006699; transform: scale(1.05); }
+        .youtube-btn { background: #ff0000; border: none; color: white; }
+        .youtube-btn:hover { background: #cc0000; transform: scale(1.05); }
+        .music-btn { background: linear-gradient(45deg, #9b59b6, #8e44ad); border: none; color: white; }
+        .music-btn.playing { background: linear-gradient(45deg, #2ecc71, #27ae60); animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        .theme-select { background: rgba(255,255,255,0.2); border: 1px solid #ff4444; color: white; }
 
-        .logo span {
-            color: #ff4444;
-            text-shadow: 0 0 10px rgba(255,68,68,0.5);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #ff4444;
-        }
-
-        .right-buttons {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .hero {
-            padding: 150px 0 80px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 56px;
-            margin-bottom: 20px;
-            animation: glitch 3s infinite;
-        }
-
+        .hero { padding: 120px 0 60px; text-align: center; }
+        .hero h1 { font-size: 42px; margin-bottom: 20px; animation: glitch 3s infinite; }
+        @media (max-width: 768px) { .hero h1 { font-size: 32px; } }
         @keyframes glitch {
             0%, 100% { text-shadow: 2px 0 #ff0000, -2px 0 #00ff00; }
             33% { text-shadow: -2px 0 #ff0000, 2px 0 #00ff00; }
             66% { text-shadow: 2px 0 #ff0000, -2px 0 #00ff00; }
         }
-
-        .hero .highlight {
-            color: #ff4444;
-            font-size: 24px;
-            margin-bottom: 30px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto 30px;
-            color: #ccc;
-        }
+        .hero .highlight { color: #ff4444; font-size: 20px; margin-bottom: 20px; }
+        .hero p { font-size: 16px; max-width: 600px; margin: 0 auto 20px; color: #ccc; }
 
         .btn {
             display: inline-block;
-            padding: 15px 40px;
-            margin: 10px;
+            padding: 12px 30px;
+            margin: 8px;
             border-radius: 50px;
-            text-decoration: none;
             font-weight: bold;
             transition: 0.3s;
             cursor: pointer;
             border: none;
-            font-size: 16px;
+            font-size: 14px;
         }
+        .btn-primary { background: linear-gradient(45deg, #ff4444, #cc0000); color: white; box-shadow: 0 0 20px rgba(255,68,68,0.5); }
+        .btn-primary:hover { transform: scale(1.05); }
+        .btn-secondary { background: transparent; color: white; border: 2px solid #ff4444; }
+        .btn-secondary:hover { background: #ff4444; transform: scale(1.05); }
 
-        .btn-primary {
-            background: linear-gradient(45deg, #ff4444, #cc0000);
-            color: white;
-            box-shadow: 0 0 20px rgba(255,68,68,0.5);
-        }
-
-        .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255,68,68,0.8);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid #ff4444;
-        }
-
-        .btn-secondary:hover {
-            background: #ff4444;
-            transform: scale(1.05);
-        }
-
-        .features {
-            padding: 80px 0;
-        }
-
-        .features h2 {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 50px;
-        }
-
+        .features { padding: 50px 0; }
+        .features h2 { text-align: center; font-size: 32px; margin-bottom: 40px; color: #ff4444; }
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
         }
-
         .feature-card {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.08);
             backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 15px;
+            padding: 25px 15px;
+            border-radius: 20px;
             text-align: center;
             transition: 0.3s;
             border: 1px solid rgba(255,68,68,0.3);
         }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: #ff4444;
-            box-shadow: 0 10px 30px rgba(255,68,68,0.2);
+        .feature-card:hover { transform: translateY(-5px); border-color: #ff4444; background: rgba(255,68,68,0.1); }
+        .feature-icon { font-size: 48px; margin-bottom: 15px; }
+        .feature-card h3 { font-size: 22px; margin-bottom: 10px; color: #ff4444; font-weight: bold; transition: color 0.3s ease; }
+        .feature-card p { font-size: 14px; color: #ccc; line-height: 1.4; }
+        
+        @media (max-width: 768px) {
+            .features-grid { grid-template-columns: 1fr; gap: 15px; }
+            .feature-card { padding: 20px; }
+            .feature-card h3 { font-size: 20px; }
         }
 
-        .feature-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
+        .video-section { padding: 50px 0; background: rgba(0,0,0,0.3); }
+        .video-section h2 { text-align: center; font-size: 28px; margin-bottom: 40px; }
+        .video-wrapper { max-width: 800px; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 2px solid #ff4444; }
+        .video-wrapper iframe { width: 100%; height: 400px; border: none; }
+        @media (max-width: 768px) { .video-wrapper iframe { height: 220px; } }
 
-        .feature-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #ff4444;
-        }
+        .discord-widget { padding: 50px 0; background: rgba(0,0,0,0.3); }
+        .discord-widget h2 { text-align: center; font-size: 28px; margin-bottom: 30px; }
+        .discord-container { max-width: 500px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .discord-container iframe { width: 100%; height: 400px; border: none; }
 
-        /* Секция видео */
-        .video-section {
-            padding: 80px 0;
-            background: rgba(0,0,0,0.3);
-        }
-
-        .video-section h2 {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 50px;
-        }
-
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 2px solid #ff4444;
-        }
-
-        .video-wrapper iframe {
-            width: 100%;
-            height: 450px;
-            border: none;
-        }
-
-        .screenshots {
-            padding: 80px 0;
-            background: rgba(0,0,0,0.2);
-        }
-
-        .screenshots h2 {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 50px;
-        }
-
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .screenshot-card {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: 0.3s;
-            border: 2px solid rgba(255,68,68,0.3);
-        }
-
-        .screenshot-card:hover {
-            transform: scale(1.05);
-            border-color: #ff4444;
-            box-shadow: 0 0 20px rgba(255,68,68,0.5);
-        }
-
-        .screenshot-placeholder {
-            width: 100%;
-            height: 200px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .screenshot-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .screenshot-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(255,68,68,0.9);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            z-index: 10;
-        }
-
-        .screenshot-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 3000;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .screenshot-modal-content {
-            max-width: 90%;
-            max-height: 90%;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            border-radius: 20px;
-            padding: 20px;
-            border: 3px solid #ff4444;
-            text-align: center;
-            cursor: default;
-        }
-
-        .screenshot-modal-content .preview {
-            width: 100%;
-            min-width: 300px;
-            height: 400px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .screenshot-modal-content .preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .close-screenshot {
-            margin-top: 20px;
-            background: #ff4444;
-            padding: 10px 30px;
-            border: none;
-            border-radius: 10px;
-            color: white;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .close-screenshot:hover {
-            transform: scale(1.05);
-        }
-
-        .download-section {
-            background: rgba(0,0,0,0.5);
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .version {
-            font-size: 48px;
-            color: #ff4444;
-            margin: 20px 0;
-        }
-
-        footer {
-            background: rgba(0,0,0,0.9);
-            padding: 30px 0;
-            text-align: center;
-            border-top: 1px solid #333;
-        }
+        .screenshots { padding: 50px 0; background: rgba(0,0,0,0.2); }
+        .screenshots h2 { text-align: center; font-size: 28px; margin-bottom: 40px; }
+        .screenshots-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
+        .screenshot-card { border-radius: 15px; overflow: hidden; cursor: pointer; transition: 0.3s; border: 2px solid rgba(255,68,68,0.3); }
+        .screenshot-card:hover { transform: scale(1.03); border-color: #ff4444; }
+        .screenshot-placeholder { width: 100%; height: 180px; overflow: hidden; position: relative; }
+        .screenshot-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+        .screenshot-badge { position: absolute; top: 10px; right: 10px; background: rgba(255,68,68,0.9); padding: 4px 10px; border-radius: 20px; font-size: 10px; }
 
         /* Анимация загрузки */
         .loader-overlay {
@@ -518,7 +250,6 @@
             flex-direction: column;
             gap: 20px;
         }
-
         .loader {
             width: 80px;
             height: 80px;
@@ -527,91 +258,65 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .loader-text { color: #ff4444; font-size: 18px; font-weight: bold; letter-spacing: 2px; }
+        .loader-progress { width: 300px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 10px; overflow: hidden; }
+        .loader-progress-bar { width: 0%; height: 100%; background: #ff4444; border-radius: 10px; transition: width 0.3s ease; }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        .download-section { background: rgba(0,0,0,0.5); padding: 50px 0; text-align: center; }
+        .version { font-size: 36px; color: #ff4444; margin: 15px 0; transition: color 0.3s ease; }
+        footer { background: rgba(0,0,0,0.9); padding: 20px 0; text-align: center; font-size: 12px; border-top: 1px solid #333; }
 
-        .loader-text {
-            color: #ff4444;
-            font-size: 18px;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-
-        .loader-progress {
-            width: 300px;
-            height: 4px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .loader-progress-bar {
-            width: 0%;
-            height: 100%;
-            background: #ff4444;
-            border-radius: 10px;
-            transition: width 0.3s ease;
-        }
-
-        /* Плавающая кнопка наверх */
         .scroll-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
             background: linear-gradient(45deg, #ff4444, #cc0000);
             color: white;
             border: none;
             border-radius: 50%;
-            font-size: 24px;
+            font-size: 20px;
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
             z-index: 999;
-            box-shadow: 0 0 20px rgba(255,68,68,0.5);
         }
+        .scroll-top.show { opacity: 1; visibility: visible; }
 
-        .scroll-top.show {
-            opacity: 1;
-            visibility: visible;
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 10px;
+            width: 280px;
+            z-index: 1000;
+            border: 1px solid #ff4444;
         }
-
-        .scroll-top:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(255,68,68,0.8);
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 36px; }
-            .header-content { flex-direction: column; gap: 15px; }
-            .nav-links { gap: 20px; }
-            .screenshots-grid { grid-template-columns: 1fr; }
-            .screenshot-modal-content .preview { min-width: auto; height: 300px; }
-            .right-buttons { flex-wrap: wrap; justify-content: center; }
-            .video-wrapper iframe { height: 250px; }
-            .scroll-top {
-                bottom: 20px;
-                right: 20px;
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
-            }
-        }
+        @media (max-width: 768px) { .music-player { width: 240px; } }
+        .music-player.hidden { display: none; }
+        .track-buttons { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+        .track-btn { background: rgba(255,68,68,0.2); border: none; padding: 4px 8px; border-radius: 12px; font-size: 9px; cursor: pointer; }
+        .track-btn:hover { background: #ff4444; }
     </style>
 </head>
 <body>
-    
-    <div class="bg-animation"></div>
+    <div class="animated-bg"></div>
+    <div class="waves-container">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
 
     <!-- Анимация загрузки -->
     <div id="loaderOverlay" class="loader-overlay">
         <div class="loader"></div>
-        <div class="loader-text">ЗАГРУЗКА TROLL CLIENT...</div>
+        <div class="loader-text">ПОДГОТОВКА ССЫЛКИ...</div>
         <div class="loader-progress">
             <div id="loaderProgressBar" class="loader-progress-bar"></div>
         </div>
@@ -622,18 +327,22 @@
             <div class="header-content">
                 <div class="logo">TROLL <span>CLIENT</span></div>
                 <div class="right-buttons">
-                    <button class="telegram-btn" onclick="playSwordSound(); openTelegram()">
-                        📱 Telegram
-                    </button>
-                    <button class="youtube-btn" onclick="playSwordSound(); openYouTube()">
-                        ▶️ YouTube
-                    </button>
-                    <button class="theme-toggle" onclick="playSwordSound(); toggleTheme()">🌓 Сменить тему</button>
+                    <button class="telegram-btn" onclick="playSwordSound(); openTelegram()">📱 Telegram</button>
+                    <button class="youtube-btn" onclick="playSwordSound(); openYouTube()">▶️ YouTube</button>
+                    <button class="music-btn" id="showMusicBtn" onclick="toggleMusicPlayer()">🎵 Музыка</button>
+                    <select class="theme-select" id="themeSelect" onchange="changeTheme()">
+                        <option value="default">🎨 Тема по умолчанию</option>
+                        <option value="light">☀️ Светлая</option>
+                        <option value="red">🔴 Красная</option>
+                        <option value="blue">🔵 Синяя</option>
+                        <option value="green">🟢 Зелёная</option>
+                        <option value="neon">💚 Neon</option>
+                    </select>
                     <ul class="nav-links">
                         <li><a href="#home" onclick="playSwordSound()">Главная</a></li>
                         <li><a href="#features" onclick="playSwordSound()">Функции</a></li>
                         <li><a href="#video" onclick="playSwordSound()">Видео</a></li>
-                        <li><a href="#screenshots" onclick="playSwordSound()">Скриншоты</a></li>
+                        <li><a href="#discord" onclick="playSwordSound()">Discord</a></li>
                         <li><a href="#download" onclick="playSwordSound()">Скачать</a></li>
                     </ul>
                 </div>
@@ -646,9 +355,9 @@
             <div class="container">
                 <h1>TROLL CLIENT</h1>
                 <div class="highlight">⚡ Лучший чит для Minecraft ⚡</div>
-                <p>killaura, ESP, targetesp, Fly, smoke и многое другое! Полная анонимность и защита от банов.</p>
+                <p>KillAura, ESP, TargetESP, Fly, Smoke и многое другое!</p>
                 <button class="btn btn-primary" onclick="playSwordSound(); startDownload()">СКАЧАТЬ БЕСПЛАТНО</button>
-                <button class="btn btn-secondary" onclick="playSwordSound(); document.getElementById('video').scrollIntoView({behavior: 'smooth'})">Смотреть обзор</button>
+                <button class="btn btn-secondary" onclick="playSwordSound(); document.getElementById('video').scrollIntoView({behavior:'smooth'})">Смотреть обзор</button>
             </div>
         </section>
 
@@ -656,123 +365,74 @@
             <div class="container">
                 <h2>🔥 МОЩНЫЕ ФУНКЦИИ 🔥</h2>
                 <div class="features-grid">
-                    <div class="feature-card" onclick="playSwordSound()">
-                        <div class="feature-icon">🎯</div>
-                        <h3>maceswap</h3>
-                        <p>двойной удар с помощью булавы</p>
-                    </div>
-                    <div class="feature-card" onclick="playSwordSound()">
-                        <div class="feature-icon">👁️</div>
-                        <h3>ESP</h3>
-                        <p>Видение игроков, сущностей и предметов сквозь стены</p>
-                    </div>
-                    <div class="feature-card" onclick="playSwordSound()">
-                        <div class="feature-icon">⚔️</div>
-                        <h3>killaura</h3>
-                        <p>сама бьёт противника</p>
-                    </div>
-                    <div class="feature-card" onclick="playSwordSound()">
-                        <div class="feature-icon">🪶</div>
-                        <h3>FLY</h3>
-                        <p>Полет в выживании и на серверах</p>
-                    </div>
-                    <div class="feature-card" onclick="playSwordSound()">
-                        <div class="feature-icon">🚬</div>
-                        <h3>smoke</h3>
-                        <p>игрок курит</p>
-                    </div>
-                    <div class="feature-card" onclick="playSwordSound()">
-                        <div class="feature-icon">🛡️</div>
-                        <h3>targetesp</h3>
-                        <p>подсвечивает кого таргейтит игрок</p>
-                    </div>
+                    <div class="feature-card" onclick="playSwordSound()"><div class="feature-icon">🎯</div><h3>KillAura</h3><p>Автоматическая атака</p></div>
+                    <div class="feature-card" onclick="playSwordSound()"><div class="feature-icon">👁️</div><h3>ESP</h3><p>Видение сквозь стены</p></div>
+                    <div class="feature-card" onclick="playSwordSound()"><div class="feature-icon">🪶</div><h3>FLY</h3><p>Свободный полёт</p></div>
+                    <div class="feature-card" onclick="playSwordSound()"><div class="feature-icon">⚡</div><h3>Speed</h3><p>Ускорение передвижения</p></div>
+                    <div class="feature-card" onclick="playSwordSound()"><div class="feature-icon">🚬</div><h3>Smoke</h3><p>Эффект курения</p></div>
+                    <div class="feature-card" onclick="playSwordSound()"><div class="feature-icon">🛡️</div><h3>AntiBan</h3><p>Защита от банов</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- Секция видео-обзора -->
         <section id="video" class="video-section">
             <div class="container">
                 <h2>📺 ВИДЕО-ОБЗОР 📺</h2>
                 <div class="video-wrapper">
-                    <iframe 
-                        src="https://www.youtube.com/embed/Y8bLQCYFjJM" 
-                        title="Troll Client обзор"
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <p style="text-align: center; margin-top: 20px; color: #888;">🎬 Полный обзор функций Troll Client</p>
-                <div style="text-align: center; margin-top: 20px;">
-                    <button class="youtube-btn" onclick="playSwordSound(); openYouTube()" style="background: #ff0000; padding: 12px 30px; font-size: 16px;">
-                        🎬 Подписаться на YouTube канал
-                    </button>
+                    <iframe src="https://www.youtube.com/embed/Y8bLQCYFjJM" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
 
-        <!-- Секция скриншотов -->
+        <section id="discord" class="discord-widget">
+            <div class="container">
+                <h2>💬 ПРИСОЕДИНЯЙСЯ К DISCORD</h2>
+                <div class="discord-container">
+                    <iframe src="https://discord.com/widget?id=1342819963937947709&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                </div>
+                <p style="text-align: center; margin-top: 15px; font-size: 12px; color: #888;">👥 Более 1000 участников! Заходи, общайся, узнавай новости</p>
+            </div>
+        </section>
+
         <section id="screenshots" class="screenshots">
             <div class="container">
                 <h2>📸 СКРИНШОТЫ 📸</h2>
                 <div class="screenshots-grid">
-                    <div class="screenshot-card" onclick="playSwordSound(); showScreenshot(0)">
-                        <div class="screenshot-placeholder">
-                            <img src="https://i.postimg.cc/gX0P3GMn/Snimok-ekrana-2026-04-30-193425.png" alt="Статистика">
-                            <div class="screenshot-badge">STATS</div>
-                        </div>
+                    <div class="screenshot-card" onclick="playSwordSound(); showFullImage('https://i.postimg.cc/gX0P3GMn/Snimok-ekrana-2026-04-30-193425.png')">
+                        <div class="screenshot-placeholder"><img src="https://i.postimg.cc/gX0P3GMn/Snimok-ekrana-2026-04-30-193425.png" alt="Статистика"><div class="screenshot-badge">STATS</div></div>
                     </div>
-                    <div class="screenshot-card" onclick="playSwordSound(); showScreenshot(1)">
-                        <div class="screenshot-placeholder">
-                            <img src="https://i.postimg.cc/CRHytRXy/Snimok-ekrana-2026-04-30-193823.png" alt="Настройки модулей">
-                            <div class="screenshot-badge">MODULES</div>
-                        </div>
+                    <div class="screenshot-card" onclick="playSwordSound(); showFullImage('https://i.postimg.cc/CRHytRXy/Snimok-ekrana-2026-04-30-193823.png')">
+                        <div class="screenshot-placeholder"><img src="https://i.postimg.cc/CRHytRXy/Snimok-ekrana-2026-04-30-193823.png" alt="Настройки"><div class="screenshot-badge">MODULES</div></div>
                     </div>
-                    <div class="screenshot-card" onclick="playSwordSound(); showScreenshot(2)">
-                        <div class="screenshot-placeholder">
-                            <img src="https://i.postimg.cc/YjZwmKY5/Snimok-ekrana-2026-04-30-193844.png" alt="Сообщество">
-                            <div class="screenshot-badge">SOCIAL</div>
-                        </div>
-                    </div>
-                    <div class="screenshot-card" onclick="playSwordSound(); showScreenshot(3)">
-                        <div class="screenshot-placeholder">
-                            <img src="https://i.postimg.cc/zbv9V0BH/Snimok-ekrana-2026-04-30-193955.png" alt="Лаунчер">
-                            <div class="screenshot-badge">LAUNCHER</div>
-                        </div>
-                    </div>
-                    <div class="screenshot-card" onclick="playSwordSound(); showScreenshot(4)">
-                        <div class="screenshot-placeholder">
-                            <img src="https://i.postimg.cc/phrgpqd3/Snimok-ekrana-2026-04-30-194034.png" alt="Дополнительно">
-                            <div class="screenshot-badge">EXTRA</div>
-                        </div>
+                    <div class="screenshot-card" onclick="playSwordSound(); showFullImage('https://i.postimg.cc/YjZwmKY5/Snimok-ekrana-2026-04-30-193844.png')">
+                        <div class="screenshot-placeholder"><img src="https://i.postimg.cc/YjZwmKY5/Snimok-ekrana-2026-04-30-193844.png" alt="Сообщество"><div class="screenshot-badge">SOCIAL</div></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <<section id="download" class="download-section">
-    <div class="container">
-        <h2>📥 СКАЧАТЬ TROLL CLIENT</h2>
-        <div class="version">alpha</div>
-        <p>Поддержка Minecraft 1.24.4</p>
-        
-        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-            <a href="https://drive.google.com/file/d/1zaZVuHucwyCFPw-ibOXlf9gQhe7JGKjJ/view?usp=sharing" 
-               class="btn btn-primary" 
-               onclick="playSwordSound()">
-                ⬇️ СКАЧАТЬ (Google Drive)
-            </a>
-            <button class="btn btn-primary" onclick="playSwordSound(); window.open('https://t.me/cheats228beta', '_blank')">
-                📱 СКАЧАТЬ (Telegram)
-            </button>
-        </div>
-        
-        <p style="margin-top: 20px; font-size: 14px; color: #888;">
-            ⭐ Более 100 000 скачиваний | ⭐ Работает на Windows/Mac/Linux
-        </p>
-    </div>
-</section>
+        <!-- СЕКЦИЯ СКАЧИВАНИЯ С GOOGLE DRIVE -->
+        <section id="download" class="download-section">
+            <div class="container">
+                <h2>📥 СКАЧАТЬ TROLL CLIENT</h2>
+                <div class="version">Alpha v2.0</div>
+                <p>Поддержка Minecraft 1.8.x - 1.24.4</p>
+                
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <!-- Кнопка Google Drive с анимацией загрузки -->
+                    <button class="btn btn-primary" onclick="downloadFromDrive()">
+                        ⬇️ СКАЧАТЬ (Google Drive)
+                    </button>
+                    <!-- Кнопка Telegram -->
+                    <button class="btn btn-primary" onclick="playSwordSound(); window.open('https://t.me/cheats228beta', '_blank')">
+                        📱 СКАЧАТЬ (Telegram)
+                    </button>
+                </div>
+                
+                <p style="margin-top: 20px; font-size: 14px; color: #888;">
+                    ⭐ Более 100 000 скачиваний | ⭐ Работает на Windows / Mac / Linux
+                </p>
+            </div>
         </section>
     </main>
 
@@ -783,42 +443,67 @@
         </div>
     </footer>
 
-    <div id="screenshotModal" class="screenshot-modal" onclick="playSwordSound(); closeScreenshotModal()">
-        <div class="screenshot-modal-content" onclick="event.stopPropagation()">
-            <div class="preview">
-                <img id="modalImage" src="" alt="Скриншот">
-            </div>
-            <button class="close-screenshot" onclick="playSwordSound(); closeScreenshotModal()">Закрыть</button>
+    <button class="scroll-top" onclick="scrollToTop()">⬆️</button>
+
+    <div id="musicPlayer" class="music-player hidden">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h5 style="color: #ff4444;">🎵 TROLL MUSIC</h5>
+            <button onclick="closeMusicPlayer()" style="background: none; border: none; color: white; cursor: pointer;">✖️</button>
+        </div>
+        <div style="text-align: center; margin: 5px 0;"><div id="currentTrackName" style="font-weight: bold; font-size: 12px;">Troll Anthem</div></div>
+        <div style="display: flex; justify-content: center; gap: 15px; margin: 8px 0;">
+            <button onclick="prevTrack()" style="background: #ff4444; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer;">⏮️</button>
+            <button id="playPauseMainBtn" onclick="togglePlayPause()" style="background: #ff4444; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">▶️</button>
+            <button onclick="nextTrack()" style="background: #ff4444; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer;">⏭️</button>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 10px;">🔊</span>
+            <input type="range" id="volumeSlider" min="0" max="100" value="30" oninput="changeVolume()" style="flex: 1;">
+        </div>
+        <div class="track-buttons">
+            <button onclick="selectTrack(0)" class="track-btn">1. Troll Anthem</button>
+            <button onclick="selectTrack(1)" class="track-btn">2. Epic Battle</button>
+            <button onclick="selectTrack(2)" class="track-btn">3. Victory</button>
         </div>
     </div>
-
-    <!-- Плавающая кнопка "Наверх" -->
-    <button class="scroll-top" onclick="scrollToTop()" title="Наверх">⬆️</button>
+    <audio id="bgMusic" loop></audio>
 
     <script>
-        // Звук меча с использованием Web Audio API
-        let audioContext = null;
+        // ========== СМЕНА ТЕМ ==========
+        function changeTheme() {
+            const select = document.getElementById('themeSelect');
+            const theme = select.value;
+            document.body.classList.remove('light-theme', 'red-theme', 'blue-theme', 'green-theme', 'neon-theme');
+            if (theme !== 'default') {
+                document.body.classList.add(theme + '-theme');
+                localStorage.setItem('site-theme', theme);
+            } else {
+                localStorage.setItem('site-theme', 'default');
+            }
+        }
+        
+        const savedTheme = localStorage.getItem('site-theme');
+        if (savedTheme && savedTheme !== 'default') {
+            const select = document.getElementById('themeSelect');
+            select.value = savedTheme;
+            document.body.classList.add(savedTheme + '-theme');
+        }
 
+        // ========== ЗВУК МЕЧА ==========
+        let audioContext = null;
         function playSwordSound() {
             try {
-                // Создаём аудиоконтекст при первом нажатии
                 if (!audioContext) {
                     audioContext = new (window.AudioContext || window.webkitAudioContext)();
                 }
-                
-                // Возобновляем контекст если он приостановлен
                 if (audioContext.state === 'suspended') {
                     audioContext.resume();
                 }
-                
                 const now = audioContext.currentTime;
-                
-                // Основной звук удара
                 const osc1 = audioContext.createOscillator();
                 const gain1 = audioContext.createGain();
                 osc1.connect(gain1);
                 gain1.connect(audioContext.destination);
-                
                 osc1.type = 'sawtooth';
                 osc1.frequency.value = 800;
                 osc1.frequency.exponentialRampToValueAtTime(100, now + 0.2);
@@ -827,12 +512,10 @@
                 osc1.start(now);
                 osc1.stop(now + 0.3);
                 
-                // Звук клинка (второй удар)
                 const osc2 = audioContext.createOscillator();
                 const gain2 = audioContext.createGain();
                 osc2.connect(gain2);
                 gain2.connect(audioContext.destination);
-                
                 osc2.type = 'square';
                 osc2.frequency.value = 600;
                 osc2.frequency.exponentialRampToValueAtTime(150, now + 0.15);
@@ -841,12 +524,10 @@
                 osc2.start(now + 0.05);
                 osc2.stop(now + 0.25);
                 
-                // Звук свиста меча
                 const osc3 = audioContext.createOscillator();
                 const gain3 = audioContext.createGain();
                 osc3.connect(gain3);
                 gain3.connect(audioContext.destination);
-                
                 osc3.type = 'sine';
                 osc3.frequency.value = 400;
                 osc3.frequency.exponentialRampToValueAtTime(1200, now + 0.1);
@@ -854,23 +535,14 @@
                 gain3.gain.exponentialRampToValueAtTime(0.0001, now + 0.15);
                 osc3.start(now);
                 osc3.stop(now + 0.15);
-                
             } catch(e) {
                 console.log('Звук не поддерживается:', e);
             }
         }
 
-        // Массив ссылок на скриншоты
-        const screenshotsData = [
-            "https://i.postimg.cc/gX0P3GMn/Snimok-ekrana-2026-04-30-193425.png",
-            "https://i.postimg.cc/CRHytRXy/Snimok-ekrana-2026-04-30-193823.png",
-            "https://i.postimg.cc/YjZwmKY5/Snimok-ekrana-2026-04-30-193844.png",
-            "https://i.postimg.cc/zbv9V0BH/Snimok-ekrana-2026-04-30-193955.png",
-            "https://i.postimg.cc/phrgpqd3/Snimok-ekrana-2026-04-30-194034.png"
-        ];
-
-        // Функция загрузки с анимацией
-        function startDownload() {
+        // ========== СКАЧИВАНИЕ С GOOGLE DRIVE ==========
+        function downloadFromDrive() {
+            playSwordSound();
             const loader = document.getElementById('loaderOverlay');
             const progressBar = document.getElementById('loaderProgressBar');
             
@@ -884,91 +556,132 @@
                     clearInterval(interval);
                     setTimeout(() => {
                         loader.style.display = 'none';
-                        window.open('https://t.me/cheats228beta', '_blank');
+                        // Прямая ссылка на скачивание с Google Drive (обход страницы просмотра)
+                        window.open('https://drive.usercontent.google.com/download?id=1zaZVuHucwyCFPw-ibOXlf9gQhe7JGKjJ&export=download&confirm=t', '_blank');
                     }, 500);
                 }
                 progressBar.style.width = progress + '%';
             }, 200);
         }
 
-        // Открытие Telegram
-        function openTelegram() {
-            window.open('https://t.me/cheats228beta', '_blank');
+        function startDownload() {
+            downloadFromDrive();
         }
 
-        // Открытие YouTube канала
-        function openYouTube() {
-            window.open('https://www.youtube.com/@sebik_cheats', '_blank');
+        // ========== ОТКРЫТИЕ TELEGRAM/YOUTUBE ==========
+        function openTelegram() { window.open('https://t.me/cheats228beta', '_blank'); }
+        function openYouTube() { window.open('https://www.youtube.com/@sebik_cheats', '_blank'); }
+
+        // ========== ПРОСМОТР СКРИНШОТОВ ==========
+        function showFullImage(url) {
+            const modal = document.createElement('div');
+            modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:10000;display:flex;justify-content:center;align-items:center;cursor:pointer;';
+            const img = document.createElement('img');
+            img.src = url;
+            img.style.maxWidth = '90%'; img.style.maxHeight = '90%'; img.style.border = '3px solid #ff4444'; img.style.borderRadius = '10px';
+            modal.appendChild(img); modal.onclick = () => modal.remove(); document.body.appendChild(modal);
         }
 
-        // Переключение темы
-        function toggleTheme() {
-            document.body.classList.toggle('light-theme');
-            const themeBtn = document.querySelector('.theme-toggle');
-            if (document.body.classList.contains('light-theme')) {
-                themeBtn.innerHTML = '🌙 Тёмная тема';
-                localStorage.setItem('theme', 'light');
-            } else {
-                themeBtn.innerHTML = '☀️ Светлая тема';
-                localStorage.setItem('theme', 'dark');
-            }
+        // ========== МУЗЫКАЛЬНЫЙ ПЛЕЕР ==========
+        const tracks = [
+            { name: '🎧 Troll Anthem', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
+            { name: '🎧 Epic Battle', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
+            { name: '🎧 Victory Theme', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' }
+        ];
+        let currentTrack = 0, isPlaying = false, audio = null;
+        
+        function initAudio() { 
+            if (!audio) { 
+                audio = document.getElementById('bgMusic'); 
+                audio.volume = 0.3; 
+                const saved = localStorage.getItem('musicVolume'); 
+                if (saved) { audio.volume = saved / 100; document.getElementById('volumeSlider').value = saved; } 
+                audio.addEventListener('ended', () => nextTrack()); 
+            } 
         }
-
-        // Загрузка сохранённой темы
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light-theme');
-            if(document.querySelector('.theme-toggle')) {
-                document.querySelector('.theme-toggle').innerHTML = '🌙 Тёмная тема';
-            }
+        
+        function loadTrack() { 
+            if (!audio) initAudio(); 
+            audio.src = tracks[currentTrack].url; 
+            audio.load(); 
+            document.getElementById('currentTrackName').innerText = tracks[currentTrack].name; 
+            localStorage.setItem('currentTrack', currentTrack); 
         }
-
-        function showScreenshot(index) {
-            const modal = document.getElementById('screenshotModal');
-            const modalImage = document.getElementById('modalImage');
-            modalImage.src = screenshotsData[index];
-            modal.style.display = 'flex';
+        
+        function togglePlayPause() { 
+            if (!audio) initAudio(); 
+            if (isPlaying) { 
+                audio.pause(); 
+                document.getElementById('playPauseMainBtn').innerHTML = '▶️'; 
+                document.getElementById('showMusicBtn').classList.remove('playing');
+            } else { 
+                if (!audio.src) loadTrack(); 
+                audio.play().catch(e => { loadTrack(); audio.play(); }); 
+                document.getElementById('playPauseMainBtn').innerHTML = '⏸️'; 
+                document.getElementById('showMusicBtn').classList.add('playing');
+            } 
+            isPlaying = !isPlaying; 
         }
-
-        function closeScreenshotModal() {
-            document.getElementById('screenshotModal').style.display = 'none';
+        
+        function nextTrack() { 
+            if (!audio) initAudio(); 
+            currentTrack = (currentTrack + 1) % tracks.length; 
+            loadTrack(); 
+            if (isPlaying) audio.play(); 
         }
-
-        // Плавная прокрутка
-        document.querySelectorAll('.nav-links a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
+        
+        function prevTrack() { 
+            if (!audio) initAudio(); 
+            currentTrack = (currentTrack - 1 + tracks.length) % tracks.length; 
+            loadTrack(); 
+            if (isPlaying) audio.play(); 
+        }
+        
+        function selectTrack(i) { 
+            if (!audio) initAudio(); 
+            currentTrack = i; 
+            loadTrack(); 
+            if (isPlaying) audio.play(); 
+        }
+        
+        function changeVolume() { 
+            const vol = document.getElementById('volumeSlider').value; 
+            if (audio) { 
+                audio.volume = vol / 100; 
+                localStorage.setItem('musicVolume', vol); 
+            } 
+        }
+        
+        function toggleMusicPlayer() { document.getElementById('musicPlayer').classList.toggle('hidden'); }
+        function closeMusicPlayer() { document.getElementById('musicPlayer').classList.add('hidden'); }
+        
+        const savedTrack = localStorage.getItem('currentTrack');
+        if (savedTrack && savedTrack < tracks.length) currentTrack = parseInt(savedTrack);
+        
+        document.body.addEventListener('click', function init() { 
+            if (!audio) { initAudio(); loadTrack(); } 
+            document.body.removeEventListener('click', init); 
         });
 
-        // Показать/скрыть кнопку "Наверх" при прокрутке
-        window.addEventListener('scroll', function() {
-            const scrollBtn = document.querySelector('.scroll-top');
-            if (window.scrollY > 300) {
-                scrollBtn.classList.add('show');
-            } else {
-                scrollBtn.classList.remove('show');
-            }
+        // ========== КНОПКА НАВЕРХ ==========
+        window.addEventListener('scroll', () => {
+            const btn = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) btn.classList.add('show');
+            else btn.classList.remove('show');
         });
-
-        // Функция прокрутки наверх
-        function scrollToTop() {
+        
+        function scrollToTop() { 
             playSwordSound();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' }); 
         }
-
-        // Инициализация звука при первом клике где угодно
-        document.body.addEventListener('click', function() {
-            if (audioContext && audioContext.state === 'suspended') {
-                audioContext.resume();
-            }
+        
+        document.querySelectorAll('.nav-links a').forEach(a => { 
+            a.addEventListener('click', function(e) { 
+                e.preventDefault(); 
+                const id = this.getAttribute('href').substring(1); 
+                const el = document.getElementById(id); 
+                if (el) el.scrollIntoView({ behavior: 'smooth' }); 
+            }); 
         });
     </script>
 </body>
